@@ -33,7 +33,7 @@ public class HelloController
         //to use in UI with JSF you should unproxy the object
         //this is why combination of JSF and Spring sucks
         Customer unproxyCustomer = HibernateUtil.unproxy(cm);
-        System.out.println(load.getCustomer().getName());
+        //System.out.println(load.getCustomer().getName());
         String message = "Welcome to mvc";
         return new ModelAndView("welcome", "message", message);
     }
