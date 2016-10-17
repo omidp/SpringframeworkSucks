@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pfaces="http://omidbiz.com/ui"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" contentType="text/html">
+	<c:set var="_ctx" value="#{request.contextPath}" />
+	<html>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title><h:outputText value="#{messages['Page_Title']}" /></title>
+	<link rel="shortcut icon" href="#{_ctx}/favicon.ico"
+		type="image/x-icon" />
+	<link rel="icon" href="#{_ctx}/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="#{_ctx}/css/w3.css" />	
+	<link rel="stylesheet" href="#{_ctx}/css/w3-theme-black.css" />
+	<link rel="stylesheet" href="#{_ctx}#{theme.css}" />
+	<link rel="stylesheet" href="#{_ctx}/css/kube.css" />
+
+	
+
+	<script type="text/javascript">
+		var contextPath = '#{_ctx}';
+		var currentDate = new Date(#{currentDate.time});		
+		var pathName = window.location.pathname.substring(contextPath.length+1).replace('.seam', '.xhtml');		
+		
+		jQuery(document).ready(function(){
+			
+		});
+		//
+	</script>
+	<ui:insert name="head" />
+
+</h:head>
+<h:body id="myPage">
+
+	<s:div id="uiMessage">
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				//msg setup
+				var message=jQuery("ul.messages li");
+				var messageUl=jQuery("ul.messages");
+				message.click(function() {
+			        Effect.DropOut(jQuery(this)[0]);
+			    });
+				messageUl.data('defaultTimer', setTimeout(function(){ 
+						messageUl.hide();
+                	}, 5000));
+				messageUl.hover(function(){
+				    var item=jQuery(this);
+	                var siblingsNodes=jQuery(this).siblings('li');
+			    	var defaultTimer = item.data('defaultTimer');
+                	if(defaultTimer){ 
+                		clearTimeout(defaultTimer);
+	                }
+				    },function(){
+				    	var item = message;
+				    	item.data('defaultTimer', setTimeout(function(){ 
+				    		item.hide();
+		                	}, 2000));
+					    });
+			});
+		</script>
+		<div class="alert-box">
+			<h:messages id="messages" globalOnly="true" styleClass="messages"
+				errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"
+				rendered="#{showGlobalMessages != 'false'}" />
+		</div>
+	</s:div>
+
+	<ui:include src="/layout/navbar.xhtml" />
+ 
+	<div class="w3-padding-large w3-margin-top-large" >
+		<ui:insert name="body"></ui:insert>
+	</div>
+
+
+</h:body>
+	</html>
+</f:view>

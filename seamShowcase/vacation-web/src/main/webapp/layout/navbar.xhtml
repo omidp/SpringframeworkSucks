@@ -1,0 +1,108 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+<!-- Side Navigation on click 
+<nav class="w3-sidenav w3-white w3-card-2 w3-animate-left" style="display:none;z-index:2" id="mySidenav">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-xxxlarge w3-text-teal">Close
+    <i class="fa fa-remove"></i>
+  </a>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+  <a href="#">Link 5</a>
+</nav>-->
+
+<!-- Navbar -->
+<div class="w3-top">
+ <ul class="w3-navbar w3-theme-d2 w3-left-align">
+  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+    <a class="w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  </li>
+  <li><a href="#" class="w3-teal"><i class="fa fa-home w3-margin-right"></i>Logo</a></li>
+  <li class="w3-hide-small">
+  <s:link rendered="#{!identity.loggedIn}" value="#{messages['Login']}"
+  	propagation="none"
+  	includePageParams="false" 
+  	view="/login.xhtml" styleClass="w3-hover-white"></s:link>
+  	<s:link rendered="#{identity.loggedIn}" value="#{messages['Log_Out']}"
+  	propagation="none"
+  	includePageParams="false" 
+  	action="#{identity.logout()}" styleClass="w3-hover-white"></s:link>
+  	
+  	</li>
+  <li class="w3-hide-small">
+  <s:link propagation="none" includePageParams="false"
+  	styleClass="w3-hover-white" 
+  	view="/member/requestVacation.xhtml" value="#{messages['Request_Vacation']}"></s:link>
+  </li>
+  <li class="w3-hide-small">
+  <s:link propagation="none" includePageParams="false"
+  	styleClass="w3-hover-white" 
+  	view="/member/requestVacation.xhtml" value="#{messages['Request_Mission']}"></s:link>
+  </li>
+<!--   <li class="w3-hide-small"><a href="#contact" class="w3-hover-white">Contact</a></li>
+  <li class="w3-hide-small w3-dropdown-hover">
+    <a href="javascript:void(0);" title="Notifications">Dropdown <i class="fa fa-caret-down"></i></a>     
+    <div class="w3-dropdown-content w3-white w3-card-4">
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+      <a href="#">Link</a>
+    </div>
+  </li> -->
+  <li class="w3-hide-small w3-right"><a href="#" class="w3-hover-teal" title="Search"><i class="fa fa-search"></i></a></li>
+ </ul>
+
+  <!-- Navbar on small screens 
+  <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+    <ul class="w3-navbar w3-left-align w3-theme">
+      <li><a href="#{_ctx}/login.seam">Login</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#pricing">Price</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#">Search</a></li>
+      <li class="w3-dropdown-hover">
+      <a href="javascript:void(0);" title="Notifications">Dropdown <i class="fa fa-caret-down"></i></a>     
+      <div class="w3-dropdown-content w3-light-grey w3-card-4">
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+      </div>
+      </li>
+    </ul>
+  </div>-->
+</div>
+
+
+<!-- Script For Side Navigation -->
+<script>
+//<![CDATA[
+function w3_open() {
+    var x = document.getElementById("mySidenav");
+    x.style.width = "300px";
+    x.style.textAlign = "center";
+    x.style.fontSize = "40px";
+    x.style.paddingTop = "10%";
+    x.style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidenav").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+//]]>
+</script>
+
+</ui:composition>

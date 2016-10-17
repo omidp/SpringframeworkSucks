@@ -1,6 +1,6 @@
 == This is what happens when you use combination of JSF, JPA(Hibernate) and Spring framework
 
-=== First Rule : all associations are LAZY
+== First Rule : all associations are LAZY
 
 + try to get count query by fetching lazy associatoin 
 
@@ -21,6 +21,6 @@ Lazyinitializeexception
 
 more Errors will come up. stay tune.
 
-=== Conclusion
+== Conclusion
 
 # Never, Ever use this combination otherwise you end up using so many DTOs which is shame. 

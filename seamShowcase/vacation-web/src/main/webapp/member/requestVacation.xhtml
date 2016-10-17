@@ -1,0 +1,68 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:pfaces="http://omidbiz.com/ui"
+	template="/layout/template.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+
+			<p:panel header="#{messages['Request']} #{messages['Vacation']}">
+
+				<s:decorate template="/layout/edit.xhtml">
+					<ui:define name="label">#{messages['Vacation_Type']}</ui:define>
+					<h:selectOneMenu value="#{vacationHome.instance.type}"
+						required="true">
+						<s:selectItems value="#{vacationType}" var="_vt"
+							label="#{_vt.label}"
+							noSelectionLabel="-- #{messages['Please_Select']} --"></s:selectItems>
+						<s:convertEnum></s:convertEnum>
+					</h:selectOneMenu>
+				</s:decorate>
+
+				<s:decorate template="/layout/edit.xhtml">
+					<ui:define name="label">#{messages['From_Date']}</ui:define>
+					<pfaces:datePicker value="#{vacationHome.instance.fromDate}"></pfaces:datePicker>
+				</s:decorate>
+
+				<s:decorate template="/layout/edit.xhtml">
+					<ui:define name="label">#{messages['To_Date']}</ui:define>
+					<pfaces:datePicker value="#{vacationHome.instance.toDate}"></pfaces:datePicker>
+				</s:decorate>
+
+
+			</p:panel>
+
+			<p:panel header="#{messages['Substitute']}">
+
+
+				<p:autoComplete value="#{vacationHome.substituteUser.id}"
+					completeMethod="#{userSubstitute.complete}" var="_user"
+					itemValue="#{_user.id}" minQueryLength="2" queryDelay="1000" >
+					
+					<p:column>
+						<h:outputText value="#{_user.firstname} - #{_user.lastname}" rendered="#{not empty _user.lastname}" />
+						<h:outputText value="#{_user.username}" rendered="#{empty _user.lastname}" />
+					</p:column>					
+				</p:autoComplete>
+
+
+			</p:panel>
+
+			<h:commandButton action="#{vacationHome.persist()}"
+				value="#{messages['Save']}" rendered="#{!vacationHome.managed}" />
+
+			<h:commandButton action="#{vacationHome.update()}"
+				value="#{messages['Update']}" rendered="#{vacationHome.managed}" />
+
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>

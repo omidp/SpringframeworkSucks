@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns="http://jboss.org/schema/seam/pages"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://jboss.org/schema/seam/pages http://jboss.org/schema/seam/pages-2.3.xsd">
+       
+   
+
+    <page view-id="/admin/*">
+        <restrict>#{s:hasRole('admin')}</restrict>
+    </page>
+    
+    <page view-id="/member/*" login-required="true">
+    </page>
+    
+    <page view-id="*">    
+        <navigation from-action="#{identity.logout()}">
+            <redirect view-id="/home.xhtml"/>
+        </navigation>
+        
+        
+
+        <navigation from-action="#{identity.quietLogin()}">
+            <rule if="#{s:hasRole('admin')}">
+                <redirect view-id="/admin/admin.xhtml"/>
+            </rule>
+        </navigation>
+
+        <navigation>
+            <rule if-outcome="home">
+                <redirect view-id="/home.xhtml"/>
+            </rule>
+            
+            <rule if-outcome="admin">
+                <redirect view-id="/admin/admin.xhtml"/>
+            </rule>            
+        </navigation>
+    </page>
+    
+
+    <exception class="org.jboss.seam.security.NotLoggedInException"> 
+        <redirect view-id="/home.xhtml">
+            <message>You must be logged in to access administrative pages.</message> 
+        </redirect> 
+    </exception> 
+
+    <exception class="org.jboss.seam.security.AuthorizationException"> 
+        <redirect view-id="/home.xhtml"> 
+            <message>You are not authorized to access administrative pages.</message> 
+        </redirect> 
+    </exception> 
+
+    <exception class="javax.faces.application.ViewExpiredException">
+        <redirect view-id="/home.xhtml">
+            <message>The page you tried to access is no longer available.</message>
+        </redirect>
+    </exception>
+
+   
+       
+</pages>

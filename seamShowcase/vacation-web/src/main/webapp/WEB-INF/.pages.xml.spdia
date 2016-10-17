@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram model-entity="SeamPagesDiagram">
+ <item ID="#admin#admin.xhtml" NAME="#xadmin#xadmin.xhtml"
+  PATH="/admin/admin.xhtml" SHAPE="472,17,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/admin/*" NAME="output" PATH="/admin/*"
+   TARGET="#xadmin#x*" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#admin#*" NAME="#xadmin#x*" PATH="/admin/*"
+  SHAPE="344,681,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="*" NAME="*" PATH="*" SHAPE="24,17,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/admin/admin.xhtml" NAME="output1"
+   PATH="/admin/admin.xhtml" TARGET="#xadmin#xadmin.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/home.xhtml" NAME="output2" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/admin/admin.xhtml" NAME="output3"
+   PATH="/admin/admin.xhtml" TARGET="#xadmin#xadmin.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.NotLoggedInException"
+  NAME="exception:org.jboss.seam.security.NotLoggedInException"
+  PATH="org.jboss.seam.security.NotLoggedInException" SHAPE="24,265,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.AuthorizationException"
+  NAME="exception:org.jboss.seam.security.AuthorizationException"
+  PATH="org.jboss.seam.security.AuthorizationException"
+  SHAPE="24,369,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.faces.application.ViewExpiredException"
+  NAME="exception:javax.faces.application.ViewExpiredException"
+  PATH="javax.faces.application.ViewExpiredException" SHAPE="24,473,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
+   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xhome.xhtml" PATH="/home.xhtml" SHAPE="472,265,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#member#*" NAME="#xmember#x*" PATH="/member/*"
+  SHAPE="24,841,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+</diagram>
