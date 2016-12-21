@@ -1,5 +1,9 @@
 package mvc.lookup;
 
+import java.sql.SQLException;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 public class DynamicDatasource extends AbstractRoutingDataSource
@@ -34,7 +38,14 @@ public class DynamicDatasource extends AbstractRoutingDataSource
 
     public enum ServerType
     {
-        DB, App
+        DB, APP
+    }
+    
+    public static void main(String[] args) throws SQLException
+    {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("ds.xml");
+        DynamicDatasource ds = (DynamicDatasource) ctx.getBean("dataSource");
+        System.out.println(ds.getConnection());
     }
 
 }
