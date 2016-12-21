@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd">
+
+	<bean id="parentDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		abstract="true">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/eshopdb" />
+	</bean>
+
+	<bean id="dbDataSource" parent="parentDataSource">
+		<property name="username" value="db" />
+		<property name="password" value="db" />
+	</bean>
+
+	<bean id="appDataSource" parent="parentDataSource">
+		<property name="username" value="app" />
+		<property name="password" value="app" />
+	</bean>
+
+	<bean id="dataSource" class="mvc.lookup.DynamicDatasource">
+		<property name="targetDataSources">
+			<map key-type="mvc.lookup.DynamicDatasource$ServerType">
+				<entry key="DB" value-ref="dbDataSource" />
+				<entry key="APP" value-ref="appDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dbDataSource" />
+	</bean>
+
+
+
+</beans>
